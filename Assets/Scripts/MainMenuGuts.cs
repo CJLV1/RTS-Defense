@@ -10,6 +10,9 @@ public class MainMenuGuts : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
 
+    public void loadSceneByIndex(int index) {
+        SceneManager.LoadScene(index);
+    }
     
 
     public void quitGame(){
@@ -18,6 +21,15 @@ public class MainMenuGuts : MonoBehaviour
         #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
         #endif
+    }
+    public void loadNextScene(){
+        int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
+
+        if(nextSceneIndex > SceneManager.sceneCount){
+            nextSceneIndex = 1;
+        }
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
 }
